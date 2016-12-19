@@ -9,7 +9,7 @@ import java.util.List;
  * Created by okhoruzhenko on 12/16/16.
  */
 public class OptionParser {
-    private static List<Character> operations = Arrays.asList('+', '-', '*', '\\', '(',')');
+    private static List<Character> operations = Arrays.asList('+', '-', '*', '/', '(',')');
     public static LinkedList<ExpressionItem> parse (String[] options) {
         LinkedList<ExpressionItem> expression = new LinkedList<ExpressionItem>();
         for (String item: options) {
@@ -19,6 +19,13 @@ public class OptionParser {
                     switch(c) {
                         case '+':   expression.add(new OperationPlus());
                                     break;
+                        case '-':   expression.add(new OperationMinus());
+                                    break;
+                        case '*':   expression.add(new OperationMultiply());
+                            break;
+                        case '/':   expression.add(new OperationDivide());
+                            break;
+
                     }
                 }
             }
