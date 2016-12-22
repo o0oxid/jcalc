@@ -1,6 +1,5 @@
 package com.mycompany.jcalc;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -10,9 +9,10 @@ import java.util.List;
  */
 public class OptionParser {
     private static List<Character> operations = Arrays.asList('+', '-', '*', '/', '(',')');
-    public static LinkedList<ExpressionItem> parse (String[] options) {
-        LinkedList<ExpressionItem> expression = new LinkedList<ExpressionItem>();
-        for (String item: options) {
+    public static LinkedList<OperationAbstract> parse (String options) {
+        LinkedList<OperationInterface> expression = new LinkedList<OperationInterface>();
+        for (char item: options.toCharArray()) {
+            
             char[] symbols = item.toCharArray();
             for (char c: symbols) {
                 if (operations.contains(c)) {
@@ -24,6 +24,10 @@ public class OptionParser {
                         case '*':   expression.add(new OperationMultiply());
                             break;
                         case '/':   expression.add(new OperationDivide());
+                            break;
+                        case '(':    expression.add(new OperationPriority(true));
+                            break;
+                        case ')':    expression.add(new OperationPriority(false));
                             break;
 
                     }

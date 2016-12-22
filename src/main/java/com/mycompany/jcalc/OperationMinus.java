@@ -3,13 +3,13 @@ package com.mycompany.jcalc;
 /**
  * Created by okhoruzhenko on 12/18/16.
  */
-public class OperationMinus extends ExpressionItem implements ExpressionOperation {
-    public double perform(ExpressionOperand a) {
-        return a.value * -1;
+public class OperationMinus extends OperationAbstract {
+    public int priority = 1;
+    public double perform(double a) {
+        return a * -1;
     }
-
-    public double perform(ExpressionOperand a, ExpressionOperand b) {
-        return a.value - b.value;
+    public double perform(double a, double b) {
+        return a - b;
     }
 
     public String toString() {return "-"; }
