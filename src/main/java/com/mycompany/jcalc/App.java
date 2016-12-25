@@ -11,8 +11,10 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
-        LinkedList<OperationAbstract> expression = OptionParser.parse(Arrays.toString(args));
-        for (OperationInterface e: expression) {System.out.println(e);}
+        StringBuilder strBuilder = new StringBuilder();
+        for (String s: args) {strBuilder.append(s);}
+        System.out.println(strBuilder.toString());
+        String[] expression = OptionParser.parse(strBuilder.toString());
+        System.out.println(expression);
     }
 }
