@@ -15,6 +15,6 @@ public class App
         for (String s: args) {strBuilder.append(s);}
         System.out.println(strBuilder.toString());
         String[] expression = OptionParser.parse(strBuilder.toString());
-        System.out.println(expression);
+        for (String e: expression) {System.out.println(e);}
     }
 }

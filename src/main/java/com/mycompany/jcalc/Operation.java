@@ -64,7 +64,8 @@ public enum Operation implements OperationInterface {
         throw new RuntimeException("Binary operation isn't supported.");
     }
 
-    public String toString() {return ""+sign;}
+    @Override
+    public String toString() {return String.valueOf(sign);}
     public char getSign() {return sign;}
     public int getWeight() {return weight;}
 }
