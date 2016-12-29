@@ -1,5 +1,7 @@
 package com.mycompany.jcalc;
 
+import org.apache.commons.lang3.ObjectUtils;
+
 /**
  * Created by okhoruzhenko on 12/23/16.
  */
@@ -45,8 +47,8 @@ public enum Operation implements OperationInterface {
             a.setWeight(a.getWeight()  - getWeight());
             return a;
         }
-    };
-
+    },
+    DONOTHING(' ', 0);
 
     private char sign;
     private int weight;
@@ -66,6 +68,14 @@ public enum Operation implements OperationInterface {
 
     @Override
     public String toString() {return String.valueOf(sign);}
-    public char getSign() {return sign;}
+
+    public String getSign() {return String.valueOf(sign);}
     public int getWeight() {return weight;}
+
+    public static Operation getOperation(String sign) {
+        Operation operation = Operation.DONOTHING;
+        for (Operation o: values()) if (sign.equals(o.getSign())) return o;
+
+        return operation;
+    }
 }

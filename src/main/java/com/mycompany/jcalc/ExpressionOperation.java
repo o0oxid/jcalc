@@ -24,4 +24,7 @@ public class ExpressionOperation extends ExpressionItem {
 
     @Override
     public ExpressionItem perform(ExpressionItem a, ExpressionItem b) { return operation.perform(a, b);}
+
+    @Override
+    public String toString() {return operation.toString();}
 }

@@ -14,7 +14,10 @@ public class App
         StringBuilder strBuilder = new StringBuilder();
         for (String s: args) {strBuilder.append(s);}
         System.out.println(strBuilder.toString());
-        String[] expression = OptionParser.parse(strBuilder.toString());
-        for (String e: expression) {System.out.println(e);}
+        String[] expressionStringArray = OptionParser.parse(strBuilder.toString());
+        LinkedList<ExpressionItem> expressionOperationList = OptionParser.stringToOperation(expressionStringArray);
+        for (ExpressionItem item: expressionOperationList) {
+            System.out.println(item);
+        }
     }
 }

@@ -21,4 +21,7 @@ public class ExpressionConstant extends ExpressionItem {
     public ExpressionItem perform(ExpressionItem a, ExpressionItem b) {
         throw new RuntimeException("Constant doesn't support operations.");
     }
+
+    @Override
+    public String toString() {return String.valueOf(value);}
 }
