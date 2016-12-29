@@ -68,14 +68,11 @@ public enum Operation implements OperationInterface {
 
     @Override
     public String toString() {return String.valueOf(sign);}
-
     public String getSign() {return String.valueOf(sign);}
     public int getWeight() {return weight;}
 
     public static Operation getOperation(String sign) {
-        Operation operation = Operation.DONOTHING;
         for (Operation o: values()) if (sign.equals(o.getSign())) return o;
-
-        return operation;
+        return Operation.DONOTHING;
     }
 }
