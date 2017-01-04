@@ -6,13 +6,13 @@ import org.apache.commons.lang3.ObjectUtils;
  * Created by okhoruzhenko on 12/23/16.
  */
 public enum Operation implements OperationInterface {
-    ADD ('+', 1) {
+    ADD ('+', 10) {
         @Override
         public ExpressionItem perform(ExpressionItem a, ExpressionItem b) {
             return new ExpressionConstant(a.perform() + b.perform());
         }
     },
-    SUB ('-', 1) {
+    SUB ('-', 10) {
         @Override
         public ExpressionItem perform(ExpressionItem a) {
             return new ExpressionConstant(a.perform() * -1 );
@@ -22,13 +22,13 @@ public enum Operation implements OperationInterface {
             return new ExpressionConstant(a.perform() - b.perform());
         }
     },
-    DIV ('/', 5) {
+    DIV ('/', 100) {
         @Override
         public ExpressionItem perform(ExpressionItem a, ExpressionItem b) {
             return new ExpressionConstant(a.perform() / b.perform());
         }
     },
-    MUL ('*', 5) {
+    MUL ('*', 100) {
         @Override
         public ExpressionItem perform(ExpressionItem a, ExpressionItem b) {
             return new ExpressionConstant(a.perform() * b.perform());

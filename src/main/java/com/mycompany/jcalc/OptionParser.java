@@ -15,7 +15,7 @@ public class OptionParser {
         for (Operation o: Operation.values()) {strBuilder.append("\\" + o.getSign());}
         String operations = "[" + strBuilder.toString() + "]";
 
-        // non-capturing special constructions. Please don't ask to explain me how it really works.
+        // non-capturing special constructions. Please don't ask me to explain how it really works.
         // http://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
         // http://stackoverflow.com/questions/19951850/split-string-with-regex-but-keep-delimeters-in-match-array
         //String regexp = "(?=[-\\+/\\*\\(\\)])|(?<=[-\\+/\\*\\(\\)])";

@@ -1,6 +1,5 @@
 package com.mycompany.jcalc;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 
 /**
@@ -15,9 +14,10 @@ public class App
         for (String s: args) {strBuilder.append(s);}
         System.out.println(strBuilder.toString());
         String[] expressionStringArray = OptionParser.parse(strBuilder.toString());
-        LinkedList<ExpressionItem> expressionOperationList = OptionParser.stringToOperation(expressionStringArray);
-        for (ExpressionItem item: expressionOperationList) {
-            System.out.println(item);
-        }
+        LinkedList<ExpressionItem> expressionOperationList;
+        expressionOperationList = OptionParser.stringToOperation(expressionStringArray);
+        Calculate.ApplyPriorities(expressionOperationList);
+        Calculate.CalculateExpression(expressionOperationList);
+        expressionOperationList.forEach(System.out::println);
     }
 }
