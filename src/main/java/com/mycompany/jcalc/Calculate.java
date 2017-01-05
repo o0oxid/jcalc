@@ -21,9 +21,13 @@ public class Calculate {
     private static void Collapse(LinkedList<ExpressionItem> expressionOperationList, ExpressionItem operation) {
         int index = expressionOperationList.indexOf(operation);
         if (index == 0) {
-            expressionOperationList.add(2,operation.perform(expressionOperationList.get(index+1)));
-            expressionOperationList.removeFirst();
-            expressionOperationList.removeFirst();
+            expressionOperationList.add(index,operation.perform(expressionOperationList.get(index+1)));
+            expressionOperationList.remove(index+1);
+            expressionOperationList.remove(index+1);
+        } else if (!expressionOperationList.get(index-1).operation.equals(Operation.DONOTHING)) {
+            expressionOperationList.add(index,operation.perform(expressionOperationList.get(index+1)));
+            expressionOperationList.remove(index+1);
+            expressionOperationList.remove(index+1);
         } else {
             expressionOperationList.add(index-1,operation.perform(expressionOperationList.get(index-1),expressionOperationList.get(index+1)));
             expressionOperationList.remove(index);
