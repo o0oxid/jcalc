@@ -22,7 +22,7 @@ public class ExpressionOperation extends ExpressionItem {
     public ExpressionItem perform(ExpressionItem a, ExpressionItem b) { return operation.perform(a, b);}
 
     @Override
-    public String toString() {return operation.toString() + ", w: " + super.getWeight();}
+    public String toString() {return operation.toString();}
 
     @Override
     public boolean isOperation() {return true;}

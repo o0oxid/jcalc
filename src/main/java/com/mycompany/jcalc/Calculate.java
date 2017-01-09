@@ -19,7 +19,12 @@ public class Calculate {
         for (ExpressionItem item: expressionOperationList) {
             if (item.isOperation() && (maxWeightOperation.getWeight() < item.getWeight())) maxWeightOperation = item;
         }
-        collapse(expressionOperationList, maxWeightOperation);
+        try {
+            collapse(expressionOperationList, maxWeightOperation);
+        } catch(RuntimeException e) {
+            System.out.println("Expression exception: '" + listToString(expressionOperationList) + "' on operation '" + maxWeightOperation.toString() + "'");
+            throw e;
+        }
         calculateExpression(expressionOperationList);
     }
 
@@ -60,5 +65,11 @@ public class Calculate {
             throw new RuntimeException("Priority operations mismatch.");
         }
         expressionOperationList.removeIf(item -> (item.operation.equals(Operation.WUP) || item.operation.equals(Operation.WDOWN)));
+    }
+
+    private String listToString(LinkedList<ExpressionItem> expressionOperationList) {
+        StringBuilder expression = new StringBuilder();
+        expressionOperationList.forEach(item -> {expression.append(item + " ");});
+        return expression.toString().trim();
     }
 }

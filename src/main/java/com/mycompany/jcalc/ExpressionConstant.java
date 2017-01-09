@@ -28,7 +28,7 @@ public class ExpressionConstant extends ExpressionItem {
     }
 
     @Override
-    public String toString() {return String.valueOf(value) + ", w: " + super.getWeight();}
+    public String toString() {return String.valueOf(value);}
 
     @Override
     public boolean isOperation() {return false;}
