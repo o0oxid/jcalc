@@ -13,11 +13,12 @@ public class App
         StringBuilder strBuilder = new StringBuilder();
         for (String s: args) {strBuilder.append(s);}
         System.out.println(strBuilder.toString());
-        String[] expressionStringArray = OptionParser.parse(strBuilder.toString());
-        LinkedList<ExpressionItem> expressionOperationList;
-        expressionOperationList = OptionParser.stringToOperation(expressionStringArray);
-        Calculate.ApplyPriorities(expressionOperationList);
-        Calculate.CalculateExpression(expressionOperationList);
-        expressionOperationList.forEach(System.out::println);
+
+        OptionParser parser = new OptionParser(strBuilder.toString());
+        LinkedList<ExpressionItem> expression = parser.getExpression();
+        Calculate calculator = new Calculate();
+        calculator.calculate(expression);
+
+        expression.forEach(System.out::println);
     }
 }

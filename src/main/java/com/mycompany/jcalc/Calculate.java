@@ -2,23 +2,28 @@ package com.mycompany.jcalc;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.ListIterator;
 
 /**
  * Created by okhoruzhenko on 1/3/17.
  */
 public class Calculate {
-    public static void CalculateExpression(LinkedList<ExpressionItem> expressionOperationList) {
+
+    public void calculate(LinkedList<ExpressionItem> expressionOperationList) {
+        applyPriorities(expressionOperationList);
+        calculateExpression(expressionOperationList);
+    }
+
+    public void calculateExpression(LinkedList<ExpressionItem> expressionOperationList) {
         if (expressionOperationList.size() == 1) return;
         ExpressionItem maxWeightOperation = expressionOperationList.get(0);
         for (ExpressionItem item: expressionOperationList) {
             if (item.isOperation() && (maxWeightOperation.getWeight() < item.getWeight())) maxWeightOperation = item;
         }
-        Collapse(expressionOperationList, maxWeightOperation);
-        CalculateExpression(expressionOperationList);
-
+        collapse(expressionOperationList, maxWeightOperation);
+        calculateExpression(expressionOperationList);
     }
-    private static void Collapse(LinkedList<ExpressionItem> expressionOperationList, ExpressionItem operation) {
+
+    private void collapse(LinkedList<ExpressionItem> expressionOperationList, ExpressionItem operation) {
         int index = expressionOperationList.indexOf(operation);
         if (index == 0) {
             expressionOperationList.add(index,operation.perform(expressionOperationList.get(index+1)));
@@ -37,13 +42,23 @@ public class Calculate {
 
     }
 
-    public static void ApplyPriorities(LinkedList<ExpressionItem> expressionOperationList) {
-        expressionOperationList.forEach((item) -> {
-            if (item.operation.equals(Operation.WUP) || item.operation.equals(Operation.WDOWN)) {
-                ListIterator<ExpressionItem> list = expressionOperationList.listIterator(expressionOperationList.indexOf(item)+1);
-                while (list.hasNext()) item.perform(list.next());
+    private void applyPriorities(LinkedList<ExpressionItem> expressionOperationList) {
+        int bumpPriorityCounter = 0;
+        for (ExpressionItem item: expressionOperationList) {
+            if (item.operation.equals(Operation.WUP) ) {
+               bumpPriorityCounter++;
             }
-        });
+            else if (item.operation.equals(Operation.WDOWN)) {
+                bumpPriorityCounter--;
+            } else {
+                for(int i = 0; i < bumpPriorityCounter; i++)  {
+                    Operation.WUP.perform(item);
+                }
+            }
+        }
+        if (bumpPriorityCounter != 0) {
+            throw new RuntimeException("Priority operations mismatch.");
+        }
         expressionOperationList.removeIf(item -> (item.operation.equals(Operation.WUP) || item.operation.equals(Operation.WDOWN)));
     }
 }
