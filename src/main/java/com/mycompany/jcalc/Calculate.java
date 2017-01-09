@@ -1,19 +1,18 @@
 package com.mycompany.jcalc;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
  * Created by okhoruzhenko on 1/3/17.
  */
-public class Calculate {
+class Calculate {
 
     public void calculate(LinkedList<ExpressionItem> expressionOperationList) {
         applyPriorities(expressionOperationList);
         calculateExpression(expressionOperationList);
     }
 
-    public void calculateExpression(LinkedList<ExpressionItem> expressionOperationList) {
+    private void calculateExpression(LinkedList<ExpressionItem> expressionOperationList) {
         if (expressionOperationList.size() == 1) return;
         ExpressionItem maxWeightOperation = expressionOperationList.get(0);
         for (ExpressionItem item: expressionOperationList) {
@@ -69,7 +68,7 @@ public class Calculate {
 
     private String listToString(LinkedList<ExpressionItem> expressionOperationList) {
         StringBuilder expression = new StringBuilder();
-        expressionOperationList.forEach(item -> {expression.append(item + " ");});
+        expressionOperationList.forEach(item -> expression.append(item).append(" "));
         return expression.toString().trim();
     }
 }

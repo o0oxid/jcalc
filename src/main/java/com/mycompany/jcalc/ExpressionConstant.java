@@ -4,8 +4,8 @@ package com.mycompany.jcalc;
  * Created by okhoruzhenko on 12/24/16.
  */
 public class ExpressionConstant extends ExpressionItem {
-    double value;
-    public static final int expressionConstantWeight = 1;
+    private final double value;
+    private static final int expressionConstantWeight = 1;
     public ExpressionConstant(double value) {
         setWeight(expressionConstantWeight);
         this.value = value;

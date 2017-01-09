@@ -6,5 +6,4 @@ package com.mycompany.jcalc;
 public interface OperationInterface {
     ExpressionItem perform(ExpressionItem a);
     ExpressionItem perform(ExpressionItem a, ExpressionItem b);
-    int getWeight();
 }
