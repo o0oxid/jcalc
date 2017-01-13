@@ -21,8 +21,8 @@ class Calculate {
         try {
             collapse(expressionOperationList, maxWeightOperation);
         } catch(RuntimeException e) {
-            System.out.println("Expression exception: '" + listToString(expressionOperationList) + "' on operation '" + maxWeightOperation.toString() + "'");
-            throw e;
+            throw new IllegalArgumentException("Expression exception: '" + listToString(expressionOperationList) +
+                    "' on operation '" + maxWeightOperation.toString() + "', " + e.getMessage());
         }
         calculateExpression(expressionOperationList);
     }

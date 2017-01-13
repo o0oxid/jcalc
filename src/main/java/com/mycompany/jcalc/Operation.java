@@ -24,7 +24,7 @@ public enum Operation implements OperationInterface {
         @Override
         public ExpressionItem perform(ExpressionItem a, ExpressionItem b) {
             if (b.perform() == 0) {
-                throw new RuntimeException("Division by zero Exception at: " + a.perform() + "/0");
+                throw new IllegalArgumentException("Division by zero Exception at: " + a.perform() + "/0");
             }
             return new ExpressionConstant(a.perform() / b.perform());
         }
